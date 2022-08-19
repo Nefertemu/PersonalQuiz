@@ -14,18 +14,21 @@ class ResultViewController: UIViewController {
     // 3. Отобразить результаты в соотвствии с этим животным
     // 4. Избавиться от кнопки возврата назад на экране результатов - Done
     
+    @IBOutlet var youAreLabel: UILabel!
+    @IBOutlet var youAreInfo: UILabel!
+    
     var answers: [Answer] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         navigationItem.setHidesBackButton(true, animated: false)
+        youAreLabel.text = "Вы - " + String(findTheMostFrequentAnimal().rawValue)
+        youAreInfo.text = findTheMostFrequentAnimal().definition
     }
     
     @IBAction func doneButtonPressed(_ sender: UIBarButtonItem) {
         dismiss(animated: true)
-        findTheMostFrequentAnimal()
-        print(answers)
     }
     
     private func findTheMostFrequentAnimal() -> AnimalType {
@@ -58,7 +61,6 @@ class ResultViewController: UIViewController {
             mostFrequentAnimal = .turtle
         }
         
-        print(mostFrequentAnimal)
         return mostFrequentAnimal
     }
 }

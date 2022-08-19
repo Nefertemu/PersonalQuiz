@@ -47,6 +47,7 @@ class ResultViewController: UIViewController {
         var catCount = 0
         var rabbitCount = 0
         var turtleCount = 0
+        
         var mostFrequentAnimal: AnimalType = .dog
         
         for animal in answers {

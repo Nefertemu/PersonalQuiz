@@ -10,6 +10,7 @@ import UIKit
 final class QuestionsViewController: UIViewController {
     
     // MARK: - IBOutlets
+    
     @IBOutlet var questionLabel: UILabel!
     
     @IBOutlet var singleStackView: UIStackView!
@@ -33,6 +34,7 @@ final class QuestionsViewController: UIViewController {
     @IBOutlet var questionProgressView: UIProgressView!
     
     // MARK: - Private Properties
+    
     private let questions = Question.getQuestions()
     private var answerChosen: [Answer] = []
     private var questionIndex = 0 // Index of current question
@@ -49,6 +51,7 @@ final class QuestionsViewController: UIViewController {
     }
 
     // MARK: - IBActions
+    
     @IBAction func singleAnswerButtonPressed(_ sender: UIButton) {
         guard let currentIndex = singleButtons.firstIndex(of: sender) else { return }
         

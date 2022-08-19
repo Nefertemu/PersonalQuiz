@@ -11,13 +11,19 @@ class ResultViewController: UIViewController {
     
     // 1. Передать массив с ответами на экран с результатами - Done
     // 2. Определить наиболее часто встречающийся тип животного - Done
-    // 3. Отобразить результаты в соотвствии с этим животным
+    // 3. Отобразить результаты в соотвствии с этим животным - Done
     // 4. Избавиться от кнопки возврата назад на экране результатов - Done
+    
+    //MARK: IBOutlets
     
     @IBOutlet var youAreLabel: UILabel!
     @IBOutlet var youAreInfo: UILabel!
     
+    //MARK: Private Properties
+    
     var answers: [Answer] = []
+    
+    //MARK: LifeCycle Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,11 +33,16 @@ class ResultViewController: UIViewController {
         youAreInfo.text = findTheMostFrequentAnimal().definition
     }
     
+    //MARK: IBActions
+    
     @IBAction func doneButtonPressed(_ sender: UIBarButtonItem) {
         dismiss(animated: true)
     }
     
+    //MARK: Private Methods
+    
     private func findTheMostFrequentAnimal() -> AnimalType {
+        
         var dogCount = 0
         var catCount = 0
         var rabbitCount = 0

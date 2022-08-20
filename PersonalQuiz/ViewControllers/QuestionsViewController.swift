@@ -79,6 +79,8 @@ final class QuestionsViewController: UIViewController {
         nextQuestion()
     }
     
+    //MARK: Navigation
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let resultsVC = segue.destination as? ResultViewController else { return }
         resultsVC.answers = answerChosen
@@ -86,6 +88,7 @@ final class QuestionsViewController: UIViewController {
 }
 
 // MARK: - User Interface
+
 extension QuestionsViewController {
     private func updateUI() {
         // Hide stacks

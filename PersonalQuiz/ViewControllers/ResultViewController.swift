@@ -29,8 +29,7 @@ class ResultViewController: UIViewController {
         super.viewDidLoad()
         
         navigationItem.setHidesBackButton(true, animated: false)
-        youAreLabel.text = "Вы - " + String(findTheMostFrequentAnimal().rawValue)
-        youAreInfo.text = findTheMostFrequentAnimal().definition
+        printMostRelevantAnimal()
     }
     
     //MARK: IBActions
@@ -43,36 +42,24 @@ class ResultViewController: UIViewController {
     
     private func findTheMostFrequentAnimal() -> AnimalType {
         
-        var dogCount = 0
-        var catCount = 0
-        var rabbitCount = 0
-        var turtleCount = 0
-        
-        var mostFrequentAnimal: AnimalType = .dog
+        var animalsCount: [AnimalType: Int] = [:]
         
         for animal in answers {
-            switch animal.type {
-            case .dog:
-                dogCount += 1
-            case .cat:
-                catCount += 1
-            case .rabbit:
-                rabbitCount += 1
-            case .turtle:
-                turtleCount += 1
+            if animalsCount.keys.contains(animal.type) {
+                animalsCount[animal.type]! += 1
+            } else {
+                animalsCount[animal.type] = 1
             }
         }
         
-        if dogCount > catCount, dogCount > rabbitCount, dogCount > turtleCount {
-            mostFrequentAnimal = .dog
-        } else if catCount > dogCount, catCount > rabbitCount, catCount > turtleCount {
-            mostFrequentAnimal = .cat
-        } else if rabbitCount > dogCount, rabbitCount > catCount, rabbitCount > turtleCount {
-            mostFrequentAnimal = .rabbit
-        } else if turtleCount > dogCount, turtleCount > catCount, turtleCount > rabbitCount {
-            mostFrequentAnimal = .turtle
-        }
+        let sortedAnimals = animalsCount.sorted(by: { $0.value > $1.value })
         
-        return mostFrequentAnimal
+        print(sortedAnimals)
+        return sortedAnimals.first!.key
+    }
+    
+    private func printMostRelevantAnimal() {
+        youAreLabel.text = "Вы - " + String(findTheMostFrequentAnimal().rawValue)
+        youAreInfo.text = findTheMostFrequentAnimal().definition
     }
 }
